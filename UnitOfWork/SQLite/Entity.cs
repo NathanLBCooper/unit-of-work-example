@@ -1,4 +1,4 @@
-﻿namespace UnitOfWork
+﻿namespace UnitOfWork.SQLite
 {
     public class Entity
     {

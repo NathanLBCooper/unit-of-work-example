@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace UnitOfWork
+namespace UnitOfWork.SQLite
 {
     public interface IConnectionContext
     {

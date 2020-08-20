@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace UnitOfWork
+namespace UnitOfWork.SQLite
 {
     // Put this in your IOC at the scope that's appropriate (Singleton, PerRequest, PerThread etc)
     public class UnitOfWorkContext : IUnitOfWorkContext, IConnectionContext
@@ -27,7 +27,7 @@ namespace UnitOfWork
             return _unitOfWork.Connection;
         }
 
-        public UnitOfWork Create()
+        public IUnitOfWork Create()
         {
             if (IsUnitOfWorkOpen)
             {

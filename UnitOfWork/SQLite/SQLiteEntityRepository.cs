@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Dapper;
 
-namespace UnitOfWork
+namespace UnitOfWork.SQLite
 {
-    public class EntityRepository
+    public class SQLiteEntityRepository
     {
         private readonly IConnectionContext _context;
 
-        public EntityRepository(IConnectionContext context)
+        public SQLiteEntityRepository(IConnectionContext context)
         {
             _context = context;
         }

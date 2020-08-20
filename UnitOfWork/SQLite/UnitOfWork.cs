@@ -2,11 +2,10 @@
 using System.Data.SQLite;
 using System.Threading.Tasks;
 
-namespace UnitOfWork
+namespace UnitOfWork.SQLite
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-
         private readonly SQLiteTransaction _transaction;
         public SQLiteConnection Connection { get; }
 
