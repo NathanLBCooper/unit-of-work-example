@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace UnitOfWork
+namespace UnitOfWorkExample.UnitOfWork
 {
     public interface IGetUnitOfWork
     {

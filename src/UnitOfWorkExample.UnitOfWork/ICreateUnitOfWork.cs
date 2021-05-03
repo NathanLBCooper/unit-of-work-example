@@ -1,4 +1,4 @@
-﻿namespace UnitOfWork
+﻿namespace UnitOfWorkExample.UnitOfWork
 {
     public interface ICreateUnitOfWork
     {

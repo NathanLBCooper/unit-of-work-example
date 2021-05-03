@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Dapper;
+﻿using Dapper;
+using UnitOfWorkExample.UnitOfWork;
 
-namespace UnitOfWork
+namespace UnitOfWorkExample.ExampleDb
 {
     public class EntityRepository
     {
@@ -12,18 +12,18 @@ namespace UnitOfWork
             _context = context;
         }
 
-        public async Task<int> CreateAsync(int value)
+        public int Create(int value)
         {
-            return await _context.GetConnection().QuerySingleAsync<int>(
+            return _context.GetConnection().QuerySingle<int>(
                 @"
 insert into Entity (Value) values (@value);
 select last_insert_rowid();
 ", new { value });
         }
 
-        public async Task<Entity> GetOrDefaultAsync(int id)
+        public Entity GetOrDefault(int id)
         {
-            return await _context.GetConnection().QuerySingleOrDefaultAsync<Entity>(
+            return _context.GetConnection().QuerySingleOrDefault<Entity>(
                 @"
 select * from Entity where Id = @id
 ", new { id });

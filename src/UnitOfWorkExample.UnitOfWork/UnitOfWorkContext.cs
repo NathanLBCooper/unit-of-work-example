@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace UnitOfWork
+namespace UnitOfWorkExample.UnitOfWork
 {
-    // Put this in your IOC at the scope that's appropriate (Singleton, PerRequest, PerThread etc)
     public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {
         private readonly SQLiteConnection _connection;
@@ -21,7 +20,7 @@ namespace UnitOfWork
             if (!IsUnitOfWorkOpen)
             {
                 throw new InvalidOperationException(
-                    "There is not current unit of work from which to get a connection. Call BeginTransaction first");
+                    "There is not current unit of work from which to get a connection. Call Create first");
             }
 
             return _unitOfWork.Connection;

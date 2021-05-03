@@ -1,4 +1,4 @@
-﻿namespace UnitOfWork
+﻿namespace UnitOfWorkExample.ExampleDb
 {
     public class Entity
     {
