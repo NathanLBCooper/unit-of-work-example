@@ -2,7 +2,7 @@
 
 namespace UnitOfWork
 {
-    public interface IConnectionContext
+    public interface IGetUnitOfWork
     {
         SQLiteConnection GetConnection();
     }

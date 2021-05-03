@@ -22,17 +22,17 @@ namespace UnitOfWork
             }
         }
 
-        private static async Task CreateSomething(EntityRepository repo, IUnitOfWorkContext context)
+        private static async Task CreateSomething(EntityRepository repo, ICreateUnitOfWork createUnitOfWork)
         {
             var expectedEntity = new Entity {Id = null, Value = 10};
 
-            using (var uow = context.Create())
+            using (var uow = createUnitOfWork.Create())
             {
                 expectedEntity.Id = await repo.CreateAsync(expectedEntity.Value);
                 await uow.CommitAsync();
             }
 
-            using (context.Create())
+            using (createUnitOfWork.Create())
             {
                 var entity = await repo.GetOrDefaultAsync(expectedEntity.Id.Value);
                 entity.Should().NotBeNull();
@@ -40,16 +40,16 @@ namespace UnitOfWork
             }
         }
 
-        private static async Task RollSomethingBack(EntityRepository repo, IUnitOfWorkContext context)
+        private static async Task RollSomethingBack(EntityRepository repo, ICreateUnitOfWork createUnitOfWork)
         {
             int entityId;
-            using (var uow = context.Create())
+            using (var uow = createUnitOfWork.Create())
             {
                 entityId = await repo.CreateAsync(101);
                 await uow.RollBackAsync(); // or fail to commit, same thing
             }
 
-            using (context.Create())
+            using (createUnitOfWork.Create())
             {
                 var entity = await repo.GetOrDefaultAsync(entityId);
                 entity.Should().BeNull();

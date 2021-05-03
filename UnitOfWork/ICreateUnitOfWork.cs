@@ -1,6 +1,6 @@
 ﻿namespace UnitOfWork
 {
-    public interface IUnitOfWorkContext
+    public interface ICreateUnitOfWork
     {
         UnitOfWork Create();
     }

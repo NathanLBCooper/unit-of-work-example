@@ -4,7 +4,7 @@ using System.Data.SQLite;
 namespace UnitOfWork
 {
     // Put this in your IOC at the scope that's appropriate (Singleton, PerRequest, PerThread etc)
-    public class UnitOfWorkContext : IUnitOfWorkContext, IConnectionContext
+    public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {
         private readonly SQLiteConnection _connection;
         private UnitOfWork _unitOfWork;

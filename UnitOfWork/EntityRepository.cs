@@ -5,9 +5,9 @@ namespace UnitOfWork
 {
     public class EntityRepository
     {
-        private readonly IConnectionContext _context;
+        private readonly IGetUnitOfWork _context;
 
-        public EntityRepository(IConnectionContext context)
+        public EntityRepository(IGetUnitOfWork context)
         {
             _context = context;
         }
