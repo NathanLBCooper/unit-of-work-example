@@ -23,7 +23,7 @@ namespace UnitOfWorkExample.Tests
         }
 
         [Fact]
-        public void Commit_something()
+        public void Commit_something_and_its_saved()
         {
             var expectedEntity = new Entity { Id = null, Value = 10 };
 
@@ -43,7 +43,7 @@ namespace UnitOfWorkExample.Tests
         }
 
         [Fact]
-        public void Rollback_Something()
+        public void Rollback_Something_and_it_never_happened()
         {
             var expectedEntity = new Entity { Id = null, Value = 10 };
 
@@ -52,6 +52,23 @@ namespace UnitOfWorkExample.Tests
                 expectedEntity.Id = _repo.Create(expectedEntity.Value);
 
                 uow.RollBack();
+            }
+
+            using (_context.Create())
+            {
+                var entity = _repo.GetOrDefault(expectedEntity.Id.Value);
+                entity.Should().BeNull();
+            }
+        }
+
+        [Fact]
+        public void Fail_to_commit_Something_and_it_never_happened()
+        {
+            var expectedEntity = new Entity { Id = null, Value = 10 };
+
+            using (var uow = _context.Create())
+            {
+                expectedEntity.Id = _repo.Create(expectedEntity.Value);
             }
 
             using (_context.Create())
