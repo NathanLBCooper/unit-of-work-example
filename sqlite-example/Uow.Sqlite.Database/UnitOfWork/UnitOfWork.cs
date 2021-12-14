@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace UnitOfWorkExample.UnitOfWork
+namespace Uow.Sqlite.Database.UnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
-    {
-        void RollBack();
-        void Commit();
-    }
-
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly SQLiteTransaction _transaction;

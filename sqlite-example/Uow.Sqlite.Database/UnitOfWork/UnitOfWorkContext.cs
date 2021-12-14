@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace UnitOfWorkExample.UnitOfWork
+namespace Uow.Sqlite.Database.UnitOfWork
 {
     public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {

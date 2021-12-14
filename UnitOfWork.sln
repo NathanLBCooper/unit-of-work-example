@@ -3,15 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWorkExample.ExampleDb", "src\UnitOfWorkExample.ExampleDb\UnitOfWorkExample.ExampleDb.csproj", "{A0C3B820-D2FD-4E12-87AB-B6912A0882FE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-example", "sqlite-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
+	ProjectSection(SolutionItems) = preProject
+		sqlite-example\Sqlite.md = sqlite-example\Sqlite.md
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWorkExample.UnitOfWork", "src\UnitOfWorkExample.UnitOfWork\UnitOfWorkExample.UnitOfWork.csproj", "{2A9FF247-E4A9-4060-A12C-50CED00E0B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "sqlite-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitOfWorkExample.Tests", "test\UnitOfWorkExample.Tests\UnitOfWorkExample.Tests.csproj", "{9FF779FD-3D65-467A-9046-48C5D79BBFBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Database", "sqlite-example\Uow.Sqlite.Database\Uow.Sqlite.Database.csproj", "{8BD683FB-360F-4613-B7AE-50326B214AD9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{03197E51-155C-437A-9186-20D328251B89}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql-example", "mssql-example", "{E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}"
+	ProjectSection(SolutionItems) = preProject
+		mssql-example\Mssql.md = mssql-example\Mssql.md
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{270FCB00-2261-4AE6-96DB-16DB56BC461D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Database", "mssql-example\Uow.Mssql.Database\Uow.Mssql.Database.csproj", "{C332E911-E8DC-4E00-80FB-D09B32470476}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Tests", "mssql-example\Uow.Mssql.Tests\Uow.Mssql.Tests.csproj", "{C6DF9767-9D0D-4445-ACB7-799DAF23B507}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Migrator", "mssql-example\Uow.Mssql.Migrator\Uow.Mssql.Migrator.csproj", "{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +29,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A0C3B820-D2FD-4E12-87AB-B6912A0882FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0C3B820-D2FD-4E12-87AB-B6912A0882FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0C3B820-D2FD-4E12-87AB-B6912A0882FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0C3B820-D2FD-4E12-87AB-B6912A0882FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A9FF247-E4A9-4060-A12C-50CED00E0B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A9FF247-E4A9-4060-A12C-50CED00E0B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A9FF247-E4A9-4060-A12C-50CED00E0B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A9FF247-E4A9-4060-A12C-50CED00E0B4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FF779FD-3D65-467A-9046-48C5D79BBFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FF779FD-3D65-467A-9046-48C5D79BBFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FF779FD-3D65-467A-9046-48C5D79BBFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FF779FD-3D65-467A-9046-48C5D79BBFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C332E911-E8DC-4E00-80FB-D09B32470476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C332E911-E8DC-4E00-80FB-D09B32470476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C332E911-E8DC-4E00-80FB-D09B32470476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C332E911-E8DC-4E00-80FB-D09B32470476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6DF9767-9D0D-4445-ACB7-799DAF23B507}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6DF9767-9D0D-4445-ACB7-799DAF23B507}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6DF9767-9D0D-4445-ACB7-799DAF23B507}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6DF9767-9D0D-4445-ACB7-799DAF23B507}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A0C3B820-D2FD-4E12-87AB-B6912A0882FE} = {03197E51-155C-437A-9186-20D328251B89}
-		{2A9FF247-E4A9-4060-A12C-50CED00E0B4E} = {03197E51-155C-437A-9186-20D328251B89}
-		{9FF779FD-3D65-467A-9046-48C5D79BBFBE} = {270FCB00-2261-4AE6-96DB-16DB56BC461D}
+		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A} = {72EC63AA-9F8C-464D-A2CD-9EB618F5885F}
+		{8BD683FB-360F-4613-B7AE-50326B214AD9} = {72EC63AA-9F8C-464D-A2CD-9EB618F5885F}
+		{C332E911-E8DC-4E00-80FB-D09B32470476} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
+		{C6DF9767-9D0D-4445-ACB7-799DAF23B507} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
+		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F5E5E04-7E6E-4A54-867D-12ED0CE09C45}

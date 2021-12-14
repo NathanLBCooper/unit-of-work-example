@@ -1,20 +1,20 @@
 ﻿using Dapper;
-using UnitOfWorkExample.UnitOfWork;
+using Uow.Sqlite.Database.UnitOfWork;
 
-namespace UnitOfWorkExample.ExampleDb
+namespace Uow.Sqlite.Database
 {
     public class EntityRepository
     {
-        private readonly IGetUnitOfWork _context;
+        private readonly IGetUnitOfWork _getUnitOfWork;
 
-        public EntityRepository(IGetUnitOfWork context)
+        public EntityRepository(IGetUnitOfWork getUnitOfWork)
         {
-            _context = context;
+            _getUnitOfWork = getUnitOfWork;
         }
 
         public int Create(int value)
         {
-            return _context.GetConnection().QuerySingle<int>(
+            return _getUnitOfWork.GetConnection().QuerySingle<int>(
                 @"
 insert into Entity (Value) values (@value);
 select last_insert_rowid();
@@ -23,7 +23,7 @@ select last_insert_rowid();
 
         public Entity GetOrDefault(int id)
         {
-            return _context.GetConnection().QuerySingleOrDefault<Entity>(
+            return _getUnitOfWork.GetConnection().QuerySingleOrDefault<Entity>(
                 @"
 select * from Entity where Id = @id
 ", new { id });
