@@ -17,11 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql-example", "mssql-exam
 		mssql-example\Mssql.md = mssql-example\Mssql.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Database", "mssql-example\Uow.Mssql.Database\Uow.Mssql.Database.csproj", "{C332E911-E8DC-4E00-80FB-D09B32470476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Mssql.Database", "mssql-example\Uow.Mssql.Database\Uow.Mssql.Database.csproj", "{C332E911-E8DC-4E00-80FB-D09B32470476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Tests", "mssql-example\Uow.Mssql.Tests\Uow.Mssql.Tests.csproj", "{C6DF9767-9D0D-4445-ACB7-799DAF23B507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Mssql.Tests", "mssql-example\Uow.Mssql.Tests\Uow.Mssql.Tests.csproj", "{C6DF9767-9D0D-4445-ACB7-799DAF23B507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uow.Mssql.Migrator", "mssql-example\Uow.Mssql.Migrator\Uow.Mssql.Migrator.csproj", "{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Mssql.Migrator", "mssql-example\Uow.Mssql.Migrator\Uow.Mssql.Migrator.csproj", "{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql-server-container", "sql-server-container", "{B71926B3-73DE-48E3-929E-D37826193CD6}"
+	ProjectSection(SolutionItems) = preProject
+		sql-server-container\Dockerfile = sql-server-container\Dockerfile
+		sql-server-container\entrypoint.sh = sql-server-container\entrypoint.sh
+		sql-server-container\initialize-database.sql = sql-server-container\initialize-database.sql
+		sql-server-container\setup-database.sh = sql-server-container\setup-database.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
