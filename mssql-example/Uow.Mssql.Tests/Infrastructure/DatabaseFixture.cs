@@ -2,7 +2,6 @@
 using System.Data;
 using Uow.Mssql.Database;
 using Uow.Mssql.Database.UnitOfWork;
-using Uow.Mssql.Tests.Fakes;
 
 namespace Uow.Mssql.Tests.Infrastructure
 {
@@ -10,10 +9,8 @@ namespace Uow.Mssql.Tests.Infrastructure
     {
         private readonly ICreateUnitOfWork _createUnitOfWork;
         private readonly TestDatabaseContext _testDatabaseContext;
-        private readonly FakeTransactionalEventPublisherFactory _fakeTransactionalEventPublisherFactory;
 
         public IGetUnitOfWork GetUnitOfWork { get; }
-        public FakeEventPublisher EventPublisher { get => _fakeTransactionalEventPublisherFactory.CurrentEventPublisher; }
 
         public DatabaseFixture()
         {
@@ -23,8 +20,7 @@ namespace Uow.Mssql.Tests.Infrastructure
 
             var sqlSettings = new SqlSettings { ConnectionString = connectionString };
 
-            _fakeTransactionalEventPublisherFactory = new FakeTransactionalEventPublisherFactory();
-            var unitOfWorkContext = new UnitOfWorkContext(sqlSettings, _fakeTransactionalEventPublisherFactory);
+            var unitOfWorkContext = new UnitOfWorkContext(sqlSettings);
             _createUnitOfWork = unitOfWorkContext;
             GetUnitOfWork = unitOfWorkContext;
         }

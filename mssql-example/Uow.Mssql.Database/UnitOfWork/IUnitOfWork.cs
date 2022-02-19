@@ -11,6 +11,5 @@ namespace Uow.Mssql.Database.UnitOfWork
         bool IsDisposed { get; }
         SqlTransaction Transaction { get; }
         SqlConnection Connection { get; }
-        IEventPublisher EventPublisher { get; }
     }
 }

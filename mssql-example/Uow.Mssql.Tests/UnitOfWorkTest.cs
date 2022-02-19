@@ -7,23 +7,19 @@ using Xunit;
 namespace Uow.Mssql.Tests
 {
     [Collection("DatabaseTest")]
-    public class Examples
+    public class UnitOfWorkTest
     {
         private readonly DatabaseFixture _fixture;
         private readonly EntityRepository _repository;
 
-        public Examples(DatabaseFixture fixture)
+        public UnitOfWorkTest(DatabaseFixture fixture)
         {
             _fixture = fixture;
             _repository = new EntityRepository(fixture.GetUnitOfWork);
         }
 
-        /**
-         * This test opens a transaction, inserts and entity, and commits the unit of work.
-         * Then it opens another transaction and expects the entity to still be there.
-         */
         [Fact]
-        public async Task Commit_something_and_its_saved()
+        public async Task Creating_an_entity_and_commiting_saves_to_the_db()
         {
             var value = 567;
             int id;
@@ -34,8 +30,6 @@ namespace Uow.Mssql.Tests
                 await uow.CommitAsync();
             }
 
-            // todo test staged and publish events
-
             using (_fixture.CreateUnitOfWork())
             {
                 var entity = await _repository.GetOrDefault(id);
@@ -45,12 +39,8 @@ namespace Uow.Mssql.Tests
             }
         }
 
-        /**
-         * This test opens a transaction, inserts and entity, and then rolls back the unit of work.
-         * Then it opens another transaction and expects the entity not to be there.
-         */
         [Fact]
-        public async Task Rollback_Something_and_it_never_happened()
+        public async Task Creating_an_entity_and_rolling_back_saves_nothing()
         {
             var value = 567;
             int id;
@@ -61,8 +51,6 @@ namespace Uow.Mssql.Tests
                 await uow.RollBackAsync();
             }
 
-            // todo test staged and publish events
-
             using (_fixture.CreateUnitOfWork())
             {
                 var entity = _repository.GetOrDefault(id);
@@ -70,13 +58,8 @@ namespace Uow.Mssql.Tests
             }
         }
 
-        /**
-         * This test opens a transaction, inserts and entity, and then neither commits nor rolls back the unit of work.
-         * Then it opens another transaction and expects the entity not to be there.
-         * That's because rollback is the default.
-         */
         [Fact]
-        public async Task Fail_to_commit_Something_and_it_never_happened()
+        public async Task Creating_an_entity_and_not_commiting_saves_nothing()
         {
             var value = 567;
             int id;
@@ -85,8 +68,6 @@ namespace Uow.Mssql.Tests
             {
                 id = await _repository.Create(value);
             }
-
-            // todo test staged and publish events
 
             using (_fixture.CreateUnitOfWork())
             {

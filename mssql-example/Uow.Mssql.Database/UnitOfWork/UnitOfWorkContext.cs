@@ -5,15 +5,13 @@ namespace Uow.Mssql.Database.UnitOfWork
 {
     public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {
-        private readonly ITransactionalEventPublisherFactory _transactionalEventPublisherFactory;
         private readonly string _connectionString;
         private IUnitOfWork _unitOfWork;
 
         private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
-        public UnitOfWorkContext(SqlSettings sqlSettings, ITransactionalEventPublisherFactory transactionalEventPublisherFactory)
+        public UnitOfWorkContext(SqlSettings sqlSettings)
         {
-            _transactionalEventPublisherFactory = transactionalEventPublisherFactory;
             _connectionString = sqlSettings.ConnectionString;
         }
 
@@ -28,17 +26,6 @@ namespace Uow.Mssql.Database.UnitOfWork
             return (_unitOfWork.Connection, _unitOfWork.Transaction);
         }
 
-        public IEventPublisher GetEventPublisher()
-        {
-            if (!IsUnitOfWorkOpen)
-            {
-                throw new InvalidOperationException(
-                    "There is not current unit of work from which to get a event publisher. Call Create first");
-            }
-
-            return _unitOfWork.EventPublisher;
-        }
-
         public IUnitOfWork Create()
         {
             if (IsUnitOfWorkOpen)
@@ -47,7 +34,7 @@ namespace Uow.Mssql.Database.UnitOfWork
                     "Cannot begin a transaction before the unit of work from the last one is disposed");
             }
 
-            _unitOfWork = new UnitOfWork(_connectionString, _transactionalEventPublisherFactory);
+            _unitOfWork = new UnitOfWork(_connectionString);
             return _unitOfWork;
         }
     }

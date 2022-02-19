@@ -22,11 +22,7 @@ insert into Entity (Value) values (@value);
 select SCOPE_IDENTITY();
 ";
 
-            var id =  await connection.QuerySingleAsync<int>(query, new { value }, transaction);
-
-            _getUnitOfWork.GetEventPublisher().PublishEvent(new EntityEvent { Id = id });
-
-            return id;
+            return await connection.QuerySingleAsync<int>(query, new { value }, transaction);
         }
 
         public async Task<Entity> GetOrDefault(int id)
