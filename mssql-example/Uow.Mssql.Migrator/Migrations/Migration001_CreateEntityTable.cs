@@ -9,7 +9,7 @@ namespace Uow.Mssql.Migrator.Migrations
         {
             Execute(@"
                 CREATE TABLE [dbo].[Entity](
-                    [Id] [int] NOT NULL PRIMARY KEY,
+                    [Id] [int] IDENTITY PRIMARY KEY,
                     [Value] [int] NOT NULL,
                 );");
         }

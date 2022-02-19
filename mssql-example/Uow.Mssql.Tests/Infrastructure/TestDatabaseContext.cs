@@ -9,7 +9,7 @@ namespace Uow.Mssql.Tests.Infrastructure
 {
     public class TestDatabaseContext : IDisposable
     {
-        private const string DataSource = "sql-server,1433";
+        private const string DataSource = "localhost,11433"; // todo for test in docker "sql-server,1433";
         private readonly string _databaseName;
 
         public TestDatabaseContext()

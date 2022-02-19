@@ -81,9 +81,9 @@ A transactional event publisher is included in the unit of work, so that events 
 
 Folder: *mssql-example/*
 
-TODO NOT DONE WITH THIS ONE
-
 An example using Sql Server. A quirk of using Sql Server is that the transaction must be passed into Dapper separately from the connection. To make this possible the interface `IGetUnitOfWork ` is expanded to return the transaction in addition to the connection.
+
+Requires Docker. Run `docker-compose` to start sql server container needed for tests. Then just press play on the tests as usual.
 
 -----
 

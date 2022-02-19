@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Uow.Mssql.Tests": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

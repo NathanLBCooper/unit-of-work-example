@@ -53,7 +53,7 @@ namespace Uow.Mssql.Tests
 
             using (_fixture.CreateUnitOfWork())
             {
-                var entity = _repository.GetOrDefault(id);
+                var entity = await _repository.GetOrDefault(id);
                 entity.ShouldBeNull();
             }
         }
@@ -71,7 +71,7 @@ namespace Uow.Mssql.Tests
 
             using (_fixture.CreateUnitOfWork())
             {
-                var entity = _repository.GetOrDefault(id);
+                var entity = await _repository.GetOrDefault(id);
                 entity.ShouldBeNull();
             }
         }

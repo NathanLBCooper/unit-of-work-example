@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+    sql-server:
+        build: ./sql-server-container
+        user: root
+        expose:
+          - 1433
+        ports:
+          - 11433:1433
+        volumes:
+          - sqlserverdata:/var/opt/mssql/data
+
+volumes:
+  sqlserverdata:
