@@ -65,6 +65,8 @@ Folder: *sqlite-example/*
 
 Basic Sqlite in-memory database example. It just works, just press play on the tests.
 
+Sqlite needs a connection to stay open for a database to continue to exist. So the lifetime of the connection in this example is much longer than it might be with a "real" database.
+
 <br/>
 
 ## SQLite Example with a non-database action in the transaction
@@ -77,6 +79,16 @@ A transactional event publisher is included in the unit of work, so that events 
 
 <br/>
 
+## PostgreSQL
+
+Folder *postgresql-example/*
+
+An example using PostgreSQL.
+
+Requires Docker. Run `docker-compose` to start postgresql container needed for tests. Then just press play on the tests as usual.
+
+<br/>
+
 ## SQL Server Example
 
 Folder: *mssql-example/*
@@ -85,12 +97,11 @@ An example using Sql Server. A quirk of using Sql Server is that the transaction
 
 Requires Docker. Run `docker-compose` to start sql server container needed for tests. Then just press play on the tests as usual.
 
+
 -----
 
 ## Potential future examples:
 
-Postgres, show in the context of an asp.net app, non-dapper example (EF Core?)
+Setup in the context of a asp.net app? Other ORMs like EF Core?
 
 Share examples (in readme?) of how to put in DI
-
-TODO have a simple SQLServer example

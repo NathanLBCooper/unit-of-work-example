@@ -11,5 +11,20 @@ services:
         volumes:
           - sqlserverdata:/var/opt/mssql/data
 
+    postgres:
+        image: postgres
+        expose:
+          - 5432
+        ports:
+          - "15432:5432"
+        volumes:
+          - pgdata:/var/lib/postgresql/data:rw
+        environment:
+          POSTGRES_DB: mypostgresqldb
+          POSTGRES_USER: postgresqluser
+          POSTGRES_PASSWORD: postgresqluserpassword
+          PGDATA: /var/lib/postgresql/data
+
 volumes:
   sqlserverdata:
+  pgdata:
