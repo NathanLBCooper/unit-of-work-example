@@ -8,7 +8,7 @@ This is my preferred **Unit of Work** pattern.
 
 <br/>
 
-## Background
+# Background
 
 A unit of work is something that tracks the changes made during a business transaction, coordinates the writing of those changes and resolves concurrency problems. It allows the changes to be written or, in the event of failure not written, together as a single unit.
 
@@ -40,7 +40,7 @@ So instead, I chose to do something else.
 
 <br/>
 
-## My pattern
+# My pattern
 
 Using a unit of work in the business code looks like this:
 
@@ -59,7 +59,9 @@ That's just the usuage. There is a relationship between repositories and the `IC
 
 <br/>
 
-## SQLite Example
+# Examples
+
+# SQLite Example
 
 Folder: *sqlite-example/*
 
@@ -98,10 +100,23 @@ An example using Sql Server. A quirk of using Sql Server is that the transaction
 Requires Docker. Run `docker-compose` to start sql server container needed for tests. Then just press play on the tests as usual.
 
 
------
+# How to use this in a dependancy injection container
 
-## Potential future examples:
+Here is a brief snippet of how I've used this with SimpleInjector in a hosted service. I'm not sure this is the best code and you might be using a different DI library, or the same one in a different context. But it demonstrates what's important, which is that the same object must be registered as both `ICreateUnitOfWork` and `IGetUnitOfWork` so the magic connection between the unit of work and the repositories can happen.
 
-Setup in the context of a asp.net app? Other ORMs like EF Core?
+```
+private static void ConfigureDependencies(Container container, IConfiguration configuration)
+        {
+            ...
 
-Share examples (in readme?) of how to put in DI
+            container.RegisterInstance(configuration.GetSection(nameof(SqlSettings)).Get<SqlSettings>());
+            var uowRegistration = Lifestyle.Scoped.CreateRegistration<UnitOfWorkContext>(
+                () => new UnitOfWorkContext(container.GetInstance<SqlSettings>()), container);
+            container.AddRegistration(typeof(ICreateUnitOfWork), uowRegistration);
+            container.AddRegistration(typeof(IGetUnitOfWork), uowRegistration);
+            container.Register<IEntityRepository, EntityRepository>(Lifestyle.Scoped);
+            container.Register(typeof(IProcessedEventRepository<>), typeof(ProcessedEventRepository<>), Lifestyle.Scoped);
+			...
+        }
+```
+
