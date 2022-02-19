@@ -1,4 +1,4 @@
-﻿namespace Uow.Sqlite.Database.UnitOfWork
+﻿namespace Uow.SqliteWithEvents.Database.UnitOfWork
 {
     public interface ICreateUnitOfWork
     {

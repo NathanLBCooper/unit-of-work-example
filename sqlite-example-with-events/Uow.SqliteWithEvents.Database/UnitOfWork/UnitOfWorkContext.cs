@@ -1,23 +1,23 @@
 ﻿using System;
-using System.Data;
+using System.Data.SQLite;
 
-namespace Uow.Mssql.Database.UnitOfWork
+namespace Uow.SqliteWithEvents.Database.UnitOfWork
 {
     public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {
         private readonly ITransactionalEventPublisherFactory _transactionalEventPublisherFactory;
-        private readonly string _connectionString;
+        private readonly SQLiteConnection _connection;
         private IUnitOfWork _unitOfWork;
 
         private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
-        public UnitOfWorkContext(SqlSettings sqlSettings, ITransactionalEventPublisherFactory transactionalEventPublisherFactory)
+        public UnitOfWorkContext(SQLiteConnection connection, ITransactionalEventPublisherFactory transactionalEventPublisherFactory)
         {
             _transactionalEventPublisherFactory = transactionalEventPublisherFactory;
-            _connectionString = sqlSettings.ConnectionString;
+            _connection = connection;
         }
 
-        public (IDbConnection connection, IDbTransaction transaction) GetConnection()
+        public SQLiteConnection GetConnection()
         {
             if (!IsUnitOfWorkOpen)
             {
@@ -25,7 +25,7 @@ namespace Uow.Mssql.Database.UnitOfWork
                     "There is not current unit of work from which to get a connection. Call Create first");
             }
 
-            return (_unitOfWork.Connection, _unitOfWork.Transaction);
+            return _unitOfWork.Connection;
         }
 
         public IEventPublisher GetEventPublisher()
@@ -47,7 +47,7 @@ namespace Uow.Mssql.Database.UnitOfWork
                     "Cannot begin a transaction before the unit of work from the last one is disposed");
             }
 
-            _unitOfWork = new UnitOfWork(_connectionString, _transactionalEventPublisherFactory);
+            _unitOfWork = new UnitOfWork(_connection, _transactionalEventPublisherFactory);
             return _unitOfWork;
         }
     }

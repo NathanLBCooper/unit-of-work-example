@@ -6,7 +6,7 @@ namespace Uow.Sqlite.Database.UnitOfWork
     public class UnitOfWorkContext : ICreateUnitOfWork, IGetUnitOfWork
     {
         private readonly SQLiteConnection _connection;
-        private UnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
 
         private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
@@ -26,7 +26,7 @@ namespace Uow.Sqlite.Database.UnitOfWork
             return _unitOfWork.Connection;
         }
 
-        public UnitOfWork Create()
+        public IUnitOfWork Create()
         {
             if (IsUnitOfWorkOpen)
             {

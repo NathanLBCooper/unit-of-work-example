@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-example", "sqlite-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
-	ProjectSection(SolutionItems) = preProject
-		sqlite-example\Sqlite.md = sqlite-example\Sqlite.md
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "sqlite-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
 EndProject
@@ -30,6 +27,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql-server-container", "sql
 		sql-server-container\initialize-database.sql = sql-server-container\initialize-database.sql
 		sql-server-container\setup-database.sh = sql-server-container\setup-database.sh
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-example-with-events", "sqlite-example-with-events", "{884F405E-F04F-4645-9825-E778C260E41E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Database", "sqlite-example-with-events\Uow.SqliteWithEvents.Database\Uow.SqliteWithEvents.Database.csproj", "{C0B41774-40DA-463D-BF22-B55BA4FEF564}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Tests", "sqlite-example-with-events\Uow.SqliteWithEvents.Tests\Uow.SqliteWithEvents.Tests.csproj", "{66873557-3181-43EF-8773-BA47CF64EE1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +60,14 @@ Global
 		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B41774-40DA-463D-BF22-B55BA4FEF564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B41774-40DA-463D-BF22-B55BA4FEF564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B41774-40DA-463D-BF22-B55BA4FEF564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B41774-40DA-463D-BF22-B55BA4FEF564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66873557-3181-43EF-8773-BA47CF64EE1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66873557-3181-43EF-8773-BA47CF64EE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66873557-3181-43EF-8773-BA47CF64EE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66873557-3181-43EF-8773-BA47CF64EE1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +78,8 @@ Global
 		{C332E911-E8DC-4E00-80FB-D09B32470476} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
 		{C6DF9767-9D0D-4445-ACB7-799DAF23B507} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
 		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
+		{C0B41774-40DA-463D-BF22-B55BA4FEF564} = {884F405E-F04F-4645-9825-E778C260E41E}
+		{66873557-3181-43EF-8773-BA47CF64EE1C} = {884F405E-F04F-4645-9825-E778C260E41E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F5E5E04-7E6E-4A54-867D-12ED0CE09C45}
