@@ -31,7 +31,7 @@ public class EntityRepositoryTest : RepositoryTest
     {
         var id = _repository.Create(789);
 
-        var @event = Fixture.CurrentEventPublisher.Staged.ShouldHaveSingleItem();
+        var @event = Fixture.CurrentEventPublisher!.Staged.ShouldHaveSingleItem();
         @event.Id.ShouldBe(id);
     }
 }

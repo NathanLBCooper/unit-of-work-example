@@ -1,7 +1,6 @@
-﻿namespace Uow.Mssql.Database.UnitOfWork
+﻿namespace Uow.Mssql.Database.UnitOfWork;
+
+public interface ICreateUnitOfWork
 {
-    public interface ICreateUnitOfWork
-    {
-        IUnitOfWork Create();
-    }
+    IUnitOfWork Create();
 }

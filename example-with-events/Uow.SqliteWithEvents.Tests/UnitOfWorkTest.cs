@@ -32,7 +32,7 @@ public class UnitOfWorkTest : IDisposable
             uow.Commit();
         }
 
-        var @event = _fixture.CurrentEventPublisher.Committed.ShouldHaveSingleItem();
+        var @event = _fixture.CurrentEventPublisher!.Committed.ShouldHaveSingleItem();
         @event.Id.ShouldBe(expectedEntity.Id.Value);
 
         using (_createUnitOfWork.Create())
@@ -55,7 +55,7 @@ public class UnitOfWorkTest : IDisposable
             uow.RollBack();
         }
 
-        _fixture.CurrentEventPublisher.Committed.ShouldBeEmpty();
+        _fixture.CurrentEventPublisher!.Committed.ShouldBeEmpty();
 
         using (_createUnitOfWork.Create())
         {
@@ -74,7 +74,7 @@ public class UnitOfWorkTest : IDisposable
             expectedEntity.Id = _repository.Create(expectedEntity.Value);
         }
 
-        _fixture.CurrentEventPublisher.Committed.ShouldBeEmpty();
+        _fixture.CurrentEventPublisher!.Committed.ShouldBeEmpty();
 
         using (_createUnitOfWork.Create())
         {

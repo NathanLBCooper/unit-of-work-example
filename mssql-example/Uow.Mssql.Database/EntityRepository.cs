@@ -2,38 +2,37 @@
 using Dapper;
 using Uow.Mssql.Database.UnitOfWork;
 
-namespace Uow.Mssql.Database
+namespace Uow.Mssql.Database;
+
+public class EntityRepository
 {
-    public class EntityRepository
+    private readonly IGetConnection _getConnection;
+
+    public EntityRepository(IGetConnection getConnection)
     {
-        private readonly IGetUnitOfWork _getUnitOfWork;
+        _getConnection = getConnection;
+    }
 
-        public EntityRepository(IGetUnitOfWork getUnitOfWork)
-        {
-            _getUnitOfWork = getUnitOfWork;
-        }
+    public async Task<int> Create(int value)
+    {
+        var (connection, transaction) = _getConnection.GetConnection();
 
-        public async Task<int> Create(int value)
-        {
-            var (connection, transaction) = _getUnitOfWork.GetConnection();
-
-            var query = @"
+        var query = @"
 insert into Entity (Value) values (@value);
 select SCOPE_IDENTITY();
 ";
 
-            return await connection.QuerySingleAsync<int>(query, new { value }, transaction);
-        }
+        return await connection.QuerySingleAsync<int>(query, new { value }, transaction);
+    }
 
-        public async Task<Entity> GetOrDefault(int id)
-        {
-            var (connection, transaction) = _getUnitOfWork.GetConnection();
+    public async Task<Entity> GetOrDefault(int id)
+    {
+        var (connection, transaction) = _getConnection.GetConnection();
 
-            var query = @"
+        var query = @"
 select * from Entity where Id = @id;
 ";
 
-            return await connection.QuerySingleOrDefaultAsync<Entity>(query, new { id }, transaction);
-        }
+        return await connection.QuerySingleOrDefaultAsync<Entity>(query, new { id }, transaction);
     }
 }

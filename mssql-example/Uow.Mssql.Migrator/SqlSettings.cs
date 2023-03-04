@@ -1,7 +1,11 @@
-﻿namespace Uow.Mssql.Migrator
+﻿namespace Uow.Mssql.Migrator;
+
+public class SqlSettings
 {
-    public class SqlSettings
+    public string ConnectionString { get; set; }
+
+    public SqlSettings(string connectionString)
     {
-        public string ConnectionString { get; set; }
+        ConnectionString = connectionString;
     }
 }

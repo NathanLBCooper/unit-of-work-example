@@ -63,7 +63,7 @@ That's just the usuage. There is a relationship between repositories and the `IC
 
 ## 01: Basic Example using SQLite and Dapper
 
-Folder: *01-basic-example/*
+Folder: *basic-example/*
 
 This is the most basic example. It uses Sqlite, an in-memory database, and Dapper. This should be your entry point for understanding this pattern.
 
@@ -79,7 +79,7 @@ The code is split up into `Application` and `Storage`, where `Storage` depends o
 
 ## 02: Example with events in the transaction
 
-Folder: *02-example-with-events/*
+Folder: *example-with-events/*
 
 Again, this uses Sqlite and Dapper. This time however, it also publishes events alongside the database changes. This an example of how non-database actions can included in the unit of work. This shows how Unit of work is a bigger concept than just a database transactions.
 
@@ -87,7 +87,7 @@ I have used this pattern in real applications, where I have used a transactional
 
 <br/>
 
-## PostgreSQL
+## 03: PostgreSQL Example
 
 Folder *postgresql-example/*
 
@@ -97,7 +97,7 @@ Requires Docker. Run `docker-compose` to start postgresql container needed for t
 
 <br/>
 
-## SQL Server Example
+## 04: SQL Server Example
 
 Folder: *mssql-example/*
 
@@ -106,7 +106,7 @@ An example using Sql Server. A quirk of using Sql Server is that the transaction
 Requires Docker. Run `docker-compose` to start sql server container needed for tests. Then just press play on the tests as usual.
 
 
-# How to use this in a dependancy injection container
+# How to use this in a dependency injection container
 
 Here is a brief snippet of how I've used this with SimpleInjector in a hosted service. I'm not sure this is the best code and you might be using a different DI library, or the same one in a different context. But it demonstrates what's important, which is that the same object must be registered as both `ICreateUnitOfWork` and `IGetUnitOfWork` so the magic connection between the unit of work and the repositories can happen.
 

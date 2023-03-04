@@ -4,76 +4,75 @@ using Uow.Mssql.Database;
 using Uow.Mssql.Tests.Infrastructure;
 using Xunit;
 
-namespace Uow.Mssql.Tests
+namespace Uow.Mssql.Tests;
+
+[Collection("DatabaseTest")]
+public class UnitOfWorkTest
 {
-    [Collection("DatabaseTest")]
-    public class UnitOfWorkTest
+    private readonly DatabaseFixture _fixture;
+    private readonly EntityRepository _repository;
+
+    public UnitOfWorkTest(DatabaseFixture fixture)
     {
-        private readonly DatabaseFixture _fixture;
-        private readonly EntityRepository _repository;
+        _fixture = fixture;
+        _repository = new EntityRepository(fixture.GetConnection);
+    }
 
-        public UnitOfWorkTest(DatabaseFixture fixture)
+    [Fact]
+    public async Task Creating_an_entity_and_commiting_saves_to_the_db()
+    {
+        var value = 567;
+        int id;
+
+        using (var uow = _fixture.CreateUnitOfWork())
         {
-            _fixture = fixture;
-            _repository = new EntityRepository(fixture.GetUnitOfWork);
+            id = await _repository.Create(value);
+            await uow.CommitAsync();
         }
 
-        [Fact]
-        public async Task Creating_an_entity_and_commiting_saves_to_the_db()
+        using (_fixture.CreateUnitOfWork())
         {
-            var value = 567;
-            int id;
+            var entity = await _repository.GetOrDefault(id);
+            _ = entity.ShouldNotBeNull();
+            entity.Id.ShouldBe(id);
+            entity.Value.ShouldBe(value);
+        }
+    }
 
-            using (var uow = _fixture.CreateUnitOfWork())
-            {
-                id = await _repository.Create(value);
-                await uow.CommitAsync();
-            }
+    [Fact]
+    public async Task Creating_an_entity_and_rolling_back_saves_nothing()
+    {
+        var value = 567;
+        int id;
 
-            using (_fixture.CreateUnitOfWork())
-            {
-                var entity = await _repository.GetOrDefault(id);
-                entity.ShouldNotBeNull();
-                entity.Id.ShouldBe(id);
-                entity.Value.ShouldBe(value);
-            }
+        using (var uow = _fixture.CreateUnitOfWork())
+        {
+            id = await _repository.Create(value);
+            await uow.RollBackAsync();
         }
 
-        [Fact]
-        public async Task Creating_an_entity_and_rolling_back_saves_nothing()
+        using (_fixture.CreateUnitOfWork())
         {
-            var value = 567;
-            int id;
+            var entity = await _repository.GetOrDefault(id);
+            entity.ShouldBeNull();
+        }
+    }
 
-            using (var uow = _fixture.CreateUnitOfWork())
-            {
-                id = await _repository.Create(value);
-                await uow.RollBackAsync();
-            }
+    [Fact]
+    public async Task Creating_an_entity_and_not_commiting_saves_nothing()
+    {
+        var value = 567;
+        int id;
 
-            using (_fixture.CreateUnitOfWork())
-            {
-                var entity = await _repository.GetOrDefault(id);
-                entity.ShouldBeNull();
-            }
+        using (var uow = _fixture.CreateUnitOfWork())
+        {
+            id = await _repository.Create(value);
         }
 
-        [Fact]
-        public async Task Creating_an_entity_and_not_commiting_saves_nothing()
+        using (_fixture.CreateUnitOfWork())
         {
-            var value = 567;
-            int id;
-
-            using (var uow = _fixture.CreateUnitOfWork())
-            {
-                id = await _repository.Create(value);
-            }
-
-            using (_fixture.CreateUnitOfWork())
-            {
-                var entity = await _repository.GetOrDefault(id);
-                entity.ShouldBeNull();
-            }
+            var entity = await _repository.GetOrDefault(id);
+            entity.ShouldBeNull();
         }
     }
 }

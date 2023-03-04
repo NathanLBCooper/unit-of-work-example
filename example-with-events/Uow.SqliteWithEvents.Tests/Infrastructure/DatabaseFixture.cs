@@ -11,7 +11,7 @@ public class DatabaseFixture : IDisposable
 
     public ICreateUnitOfWork CreateUnitOfWork;
     public IGetConnection GetConnection { get; }
-    public FakeEventPublisher CurrentEventPublisher => _fakeTransactionalEventPublisherFactory.CurrentEventPublisher;
+    public FakeEventPublisher? CurrentEventPublisher => _fakeTransactionalEventPublisherFactory.CurrentEventPublisher;
 
     public DatabaseFixture()
     {

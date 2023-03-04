@@ -8,7 +8,7 @@ public class UnitOfWorkContext : ICreateUnitOfWork, IGetConnection
 {
     private readonly ITransactionalEventPublisherFactory _transactionalEventPublisherFactory;
     private readonly SQLiteConnection _connection;
-    private UnitOfWork _unitOfWork;
+    private UnitOfWork? _unitOfWork;
 
     private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
@@ -26,7 +26,7 @@ public class UnitOfWorkContext : ICreateUnitOfWork, IGetConnection
                 "There is not current unit of work from which to get a connection. Call Create first");
         }
 
-        return _unitOfWork.Connection;
+        return _unitOfWork!.Connection;
     }
 
     public IEventPublisher GetEventPublisher()
@@ -37,7 +37,7 @@ public class UnitOfWorkContext : ICreateUnitOfWork, IGetConnection
                 "There is not current unit of work from which to get a event publisher. Call Create first");
         }
 
-        return _unitOfWork.EventPublisher;
+        return _unitOfWork!.EventPublisher;
     }
 
     public IUnitOfWork Create()

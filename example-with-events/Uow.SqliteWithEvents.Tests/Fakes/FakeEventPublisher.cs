@@ -23,7 +23,7 @@ public class FakeEventPublisher : ITransactionalEventPublisher
 
 public class FakeTransactionalEventPublisherFactory : ITransactionalEventPublisherFactory
 {
-    public FakeEventPublisher CurrentEventPublisher;
+    public FakeEventPublisher? CurrentEventPublisher;
 
     public ITransactionalEventPublisher Create()
     {
