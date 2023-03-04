@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-basic-example", "01-basic-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "basic-example", "basic-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "01-basic-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "basic-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql-example", "mssql-example", "{E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}"
 EndProject
@@ -29,11 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql-server-container", "sql
 		sql-server-container\setup-database.sh = sql-server-container\setup-database.sh
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-example-with-events", "02-example-with-events", "{884F405E-F04F-4645-9825-E778C260E41E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example-with-events", "example-with-events", "{884F405E-F04F-4645-9825-E778C260E41E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Example", "02-example-with-events\Uow.SqliteWithEvents.Example\Uow.SqliteWithEvents.Example.csproj", "{C0B41774-40DA-463D-BF22-B55BA4FEF564}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Example", "example-with-events\Uow.SqliteWithEvents.Example\Uow.SqliteWithEvents.Example.csproj", "{C0B41774-40DA-463D-BF22-B55BA4FEF564}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Tests", "02-example-with-events\Uow.SqliteWithEvents.Tests\Uow.SqliteWithEvents.Tests.csproj", "{66873557-3181-43EF-8773-BA47CF64EE1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.SqliteWithEvents.Tests", "example-with-events\Uow.SqliteWithEvents.Tests\Uow.SqliteWithEvents.Tests.csproj", "{66873557-3181-43EF-8773-BA47CF64EE1C}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D2C0E2B3-E223-41BF-8B23-6B1487F598FA}"
 EndProject
@@ -45,7 +45,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Postgresql.Migrator", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Postgresql.Tests", "postgresql-example\Uow.Postgresql.Tests\Uow.Postgresql.Tests.csproj", "{BA1205AC-0046-4193-85B3-0F2103D5BA01}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Example", "01-basic-example\Uow.Sqlite.Example\Uow.Sqlite.Example.csproj", "{1F0F5CD9-A942-49AB-8389-158706DDB505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Example", "basic-example\Uow.Sqlite.Example\Uow.Sqlite.Example.csproj", "{1F0F5CD9-A942-49AB-8389-158706DDB505}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
