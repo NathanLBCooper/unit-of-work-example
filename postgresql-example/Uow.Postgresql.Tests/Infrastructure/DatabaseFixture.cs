@@ -3,34 +3,40 @@ using System.Data;
 using Uow.Postgresql.Database;
 using Uow.Postgresql.Database.UnitOfWork;
 
-namespace Uow.Postgresql.Tests.Infrastructure
+namespace Uow.Postgresql.Tests.Infrastructure;
+
+public class DatabaseFixture : IDisposable
 {
-    public class DatabaseFixture : IDisposable
+    private readonly ICreateUnitOfWork _createUnitOfWork;
+    private readonly TestDatabaseContext _testDatabaseContext;
+
+    public IGetConnection GetConnection { get; }
+
+    public DatabaseFixture()
     {
-        private readonly ICreateUnitOfWork _createUnitOfWork;
-        private readonly TestDatabaseContext _testDatabaseContext;
+        _testDatabaseContext = new TestDatabaseContext();
+        _testDatabaseContext.InitializeTestDatabase();
+        var connectionString = _testDatabaseContext.ConnectionString!;
 
-        public IGetUnitOfWork GetUnitOfWork { get; }
+        var sqlSettings = new SqlSettings(connectionString);
 
-        public DatabaseFixture()
-        {
-            _testDatabaseContext = new TestDatabaseContext();
-            _testDatabaseContext.InitializeTestDatabase();
-            var connectionString = _testDatabaseContext.ConnectionString;
+        var unitOfWorkContext = new UnitOfWorkContext(sqlSettings);
+        _createUnitOfWork = unitOfWorkContext;
+        GetConnection = unitOfWorkContext;
+    }
 
-            var sqlSettings = new SqlSettings { ConnectionString = connectionString };
+    public IDbConnection GetCurrentConnection()
+    {
+        return GetConnection.GetConnection();
+    }
 
-            var unitOfWorkContext = new UnitOfWorkContext(sqlSettings);
-            _createUnitOfWork = unitOfWorkContext;
-            GetUnitOfWork = unitOfWorkContext;
-        }
+    public IUnitOfWork CreateUnitOfWork()
+    {
+        return _createUnitOfWork.Create();
+    }
 
-        public IDbConnection GetCurrentConnection() => GetUnitOfWork.GetConnection();
-        public IUnitOfWork CreateUnitOfWork() => _createUnitOfWork.Create();
-
-        public void Dispose()
-        {
-            _testDatabaseContext.Dispose();
-        }
+    public void Dispose()
+    {
+        _testDatabaseContext.Dispose();
     }
 }

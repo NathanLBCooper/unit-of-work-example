@@ -1,8 +1,7 @@
-﻿namespace Uow.Postgresql.Database
+﻿namespace Uow.Postgresql.Database;
+
+public class Entity
 {
-    public class Entity
-    {
-        public int Id { get; set; }
-        public int Value { get; set; }
-    }
+    public int Id { get; set; }
+    public int Value { get; set; }
 }

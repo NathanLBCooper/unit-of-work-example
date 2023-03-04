@@ -1,7 +1,11 @@
-﻿namespace Uow.Postgresql.Database
+﻿namespace Uow.Postgresql.Database;
+
+public class SqlSettings
 {
-    public class SqlSettings
+    public string ConnectionString { get; set; }
+
+    public SqlSettings(string connectionString)
     {
-        public string ConnectionString { get; set; }
+        ConnectionString = connectionString;
     }
 }

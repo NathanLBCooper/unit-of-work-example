@@ -1,9 +1,8 @@
 ﻿using System.Data;
 
-namespace Uow.Postgresql.Database.UnitOfWork
+namespace Uow.Postgresql.Database.UnitOfWork;
+
+public interface IGetConnection
 {
-    public interface IGetUnitOfWork
-    {
-        IDbConnection GetConnection();
-    }
+    IDbConnection GetConnection();
 }

@@ -75,6 +75,8 @@ There is one strange quirk about how this example is written. In Sqlite the data
 
 The code is split up into `Application` and `Storage`, where `Storage` depends on `Application`. The first folder contains the parts of this pattern that need to be visible to all the code that uses Unit Of Work. The second contains the parts that are only needed internally by the repositories. The Controller class does not need to reference Storage to use `ICreateUnitOfWork`, so this pattern supports architectures where database code is decoupled.
 
+This (and every other) example is just my current favourite way of structuring this pattern. That has changed (as can be seen in the commit history). You can also change things to your preferences.
+
 <br/>
 
 ## 02: Example with events in the transaction

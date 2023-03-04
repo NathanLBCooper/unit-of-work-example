@@ -1,7 +1,6 @@
-﻿namespace Uow.Postgresql.Database.UnitOfWork
+﻿namespace Uow.Postgresql.Database.UnitOfWork;
+
+public interface ICreateUnitOfWork
 {
-    public interface ICreateUnitOfWork
-    {
-        IUnitOfWork Create();
-    }
+    IUnitOfWork Create();
 }
