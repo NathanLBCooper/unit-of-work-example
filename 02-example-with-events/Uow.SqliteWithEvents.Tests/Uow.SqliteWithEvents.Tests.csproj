@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Uow.SqliteWithEvents.Database\Uow.SqliteWithEvents.Database.csproj" />
+    <ProjectReference Include="..\Uow.SqliteWithEvents.Example\Uow.SqliteWithEvents.Example.csproj" />
   </ItemGroup>
 
 </Project>

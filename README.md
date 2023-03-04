@@ -61,7 +61,7 @@ That's just the usuage. There is a relationship between repositories and the `IC
 
 # Examples
 
-## Basic Example using SQLite and Dapper
+## 01: Basic Example using SQLite and Dapper
 
 Folder: *01-basic-example/*
 
@@ -77,13 +77,13 @@ The code is split up into `Application` and `Storage`, where `Storage` depends o
 
 <br/>
 
-## SQLite Example with a non-database action in the transaction
+## 02: Example with events in the transaction
 
-Folder: *sqlite-example-with-events/*
+Folder: *02-example-with-events/*
 
-Another simple in-memory Sqlite example. This time, shows  how to include non-database actions (event publishing) in the unit of work. Unit of work isn't, after all, always just an abstraction of a database transaction.
+Again, this uses Sqlite and Dapper. This time however, it also publishes events alongside the database changes. This an example of how non-database actions can included in the unit of work. This shows how Unit of work is a bigger concept than just a database transactions.
 
-A transactional event publisher is included in the unit of work, so that events can commit and be rolled back along with the database changes. The event publisher is very basic in this example, but on commit it could do something like send messages to rabbitmq or enqueue jobs in hangfire.
+I have used this pattern in real applications, where I have used a transactional event publisher to send messages to RabbitMq and enqueue work on Hangfire.
 
 <br/>
 
