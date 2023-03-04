@@ -1,13 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-example", "sqlite-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1C8B7EDF-F099-4A28-803E-4A0621808E40}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		README.md = README.md
+	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "sqlite-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-basic-example", "01-basic-example", "{72EC63AA-9F8C-464D-A2CD-9EB618F5885F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Database", "sqlite-example\Uow.Sqlite.Database\Uow.Sqlite.Database.csproj", "{8BD683FB-360F-4613-B7AE-50326B214AD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Tests", "01-basic-example\Uow.Sqlite.Tests\Uow.Sqlite.Tests.csproj", "{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mssql-example", "mssql-example", "{E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}"
 EndProject
@@ -41,6 +45,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Postgresql.Migrator", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Postgresql.Tests", "postgresql-example\Uow.Postgresql.Tests\Uow.Postgresql.Tests.csproj", "{BA1205AC-0046-4193-85B3-0F2103D5BA01}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uow.Sqlite.Example", "01-basic-example\Uow.Sqlite.Example\Uow.Sqlite.Example.csproj", "{1F0F5CD9-A942-49AB-8389-158706DDB505}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +57,6 @@ Global
 		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BD683FB-360F-4613-B7AE-50326B214AD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C332E911-E8DC-4E00-80FB-D09B32470476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C332E911-E8DC-4E00-80FB-D09B32470476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C332E911-E8DC-4E00-80FB-D09B32470476}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -91,13 +93,16 @@ Global
 		{BA1205AC-0046-4193-85B3-0F2103D5BA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA1205AC-0046-4193-85B3-0F2103D5BA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA1205AC-0046-4193-85B3-0F2103D5BA01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F0F5CD9-A942-49AB-8389-158706DDB505}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0F5CD9-A942-49AB-8389-158706DDB505}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0F5CD9-A942-49AB-8389-158706DDB505}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0F5CD9-A942-49AB-8389-158706DDB505}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{15CEDFB0-1BD8-4ECD-8B44-191F674EB65A} = {72EC63AA-9F8C-464D-A2CD-9EB618F5885F}
-		{8BD683FB-360F-4613-B7AE-50326B214AD9} = {72EC63AA-9F8C-464D-A2CD-9EB618F5885F}
 		{C332E911-E8DC-4E00-80FB-D09B32470476} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
 		{C6DF9767-9D0D-4445-ACB7-799DAF23B507} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
 		{69B75AF7-A8DA-499C-8CCE-BFF3CD8DBB70} = {E33C43F1-0EAE-4406-A6F9-2F8487E1E91A}
@@ -106,6 +111,7 @@ Global
 		{DB28EE51-9353-484B-9C27-D2704AC32F1B} = {D5DCDE51-0581-44F4-AA19-299C80103AE9}
 		{F8F224CC-7765-4ADA-8948-1757CA691616} = {D5DCDE51-0581-44F4-AA19-299C80103AE9}
 		{BA1205AC-0046-4193-85B3-0F2103D5BA01} = {D5DCDE51-0581-44F4-AA19-299C80103AE9}
+		{1F0F5CD9-A942-49AB-8389-158706DDB505} = {72EC63AA-9F8C-464D-A2CD-9EB618F5885F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F5E5E04-7E6E-4A54-867D-12ED0CE09C45}

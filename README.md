@@ -61,13 +61,19 @@ That's just the usuage. There is a relationship between repositories and the `IC
 
 # Examples
 
-# SQLite Example
+## Basic Example using SQLite and Dapper
 
-Folder: *sqlite-example/*
+Folder: *01-basic-example/*
 
-Basic Sqlite in-memory database example. It just works, just press play on the tests.
+This is the most basic example. It uses Sqlite, an in-memory database, and Dapper. This should be your entry point for understanding this pattern.
 
-Sqlite needs a connection to stay open for a database to continue to exist. So the lifetime of the connection in this example is much longer than it might be with a "real" database.
+This code contains an Entity, a Repository, a Controller and the unit of work pattern. There are unit tests on both the Controller and the Repository. These tests can be run without any special setup.
+
+### Notes:
+
+There is one strange quirk about how this example is written. In Sqlite the database only exists for as long as the connection exists. This makes `SQLiteConnection` a very long lived object. The other non-Sqlite examples create and destroy the connection alongside the transaction inside the `UnitOfWork`.
+
+The code is split up into `Application` and `Storage`, where `Storage` depends on `Application`. The first folder contains the parts of this pattern that need to be visible to all the code that uses Unit Of Work. The second contains the parts that are only needed internally by the repositories. The Controller class does not need to reference Storage to use `ICreateUnitOfWork`, so this pattern supports architectures where database code is decoupled.
 
 <br/>
 

@@ -4,6 +4,7 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Uow.Sqlite.Database\Uow.Sqlite.Database.csproj" />
+    <ProjectReference Include="..\Uow.Sqlite.Example\Uow.Sqlite.Example.csproj" />
   </ItemGroup>
 
 </Project>
