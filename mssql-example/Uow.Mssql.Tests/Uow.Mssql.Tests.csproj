@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
-
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-
     <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
