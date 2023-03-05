@@ -14,12 +14,13 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public UnitOfWork(ExampleDbContext dbContext)
     {
         DbContext = dbContext;
-        _transaction = DbContext.Database.BeginTransaction();
+        _transaction = DbContext.Database.BeginTransaction(); // todo is this right? Maybe the DbContext lifetime should be the same as the UOW?
     }
 
     public void RollBack()
     {
         _transaction.Rollback();
+        DbContext.ChangeTracker.Clear();
     }
 
     public void Commit()
@@ -30,6 +31,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public void Dispose()
     {
         _transaction?.Dispose();
+        DbContext.ChangeTracker.Clear();
 
         IsDisposed = true;
     }
