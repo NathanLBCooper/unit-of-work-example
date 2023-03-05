@@ -9,8 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.3" />
     <PackageReference Include="Shouldly" Version="4.0.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
@@ -24,7 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Uow.EntityFrameworkInMemory.Example\Uow.EntityFrameworkInMemory.Example.csproj" />
+    <ProjectReference Include="..\Uow.EntityFramework.Example\Uow.EntityFramework.Example.csproj" />
+    <ProjectReference Include="..\Uow.EntityFramework.Migrator\Uow.EntityFramework.Migrator.csproj" />
   </ItemGroup>
 
 </Project>

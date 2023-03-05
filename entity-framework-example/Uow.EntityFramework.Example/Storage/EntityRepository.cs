@@ -1,6 +1,6 @@
-﻿using Uow.EntityFrameworkInMemory.Example.Application;
+﻿using Uow.EntityFramework.Example.Application;
 
-namespace Uow.EntityFrameworkInMemory.Example.Storage;
+namespace Uow.EntityFramework.Example.Storage;
 
 public class EntityRepository : IEntityRepository
 {

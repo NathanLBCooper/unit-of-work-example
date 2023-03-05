@@ -1,4 +1,4 @@
-﻿namespace Uow.EntityFrameworkInMemory.Example.Application;
+﻿namespace Uow.EntityFramework.Example.Application;
 
 public class Entity
 {

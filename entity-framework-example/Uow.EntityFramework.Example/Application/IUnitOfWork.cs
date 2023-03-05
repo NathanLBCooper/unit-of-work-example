@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Uow.EntityFrameworkInMemory.Example.Application;
+namespace Uow.EntityFramework.Example.Application;
 
 public interface IUnitOfWork : IDisposable
 {
