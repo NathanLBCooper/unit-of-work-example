@@ -127,9 +127,9 @@ Requires Docker. Run `docker-compose` to start sql server container needed for t
 
 ## 05: Entity Framework Example
 
-Folder: *todo*
+Folder: *entity-framework-example/*
 
-TODO
+TODO in-progress
 
 <br/>
 
