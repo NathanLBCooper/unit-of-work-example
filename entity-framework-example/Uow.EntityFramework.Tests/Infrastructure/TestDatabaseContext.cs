@@ -14,7 +14,7 @@ public class TestDatabaseContext : IDisposable
 
     public TestDatabaseContext()
     {
-        _databaseName = $"uow-mssql-test{Guid.NewGuid()}";
+        _databaseName = $"uow-ef-test{Guid.NewGuid()}";
     }
 
     public void InitializeTestDatabase()
