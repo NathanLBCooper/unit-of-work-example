@@ -129,7 +129,11 @@ Requires Docker. Run `docker-compose` to start sql server container needed for t
 
 Folder: *entity-framework-example/*
 
-TODO in-progress
+An example using Entity Framework and SQL server. It could probably be easily adapted to other EF Data Providers, as long as they support transactions.
+
+Note, there is less of a usecase for having to use your own transactions with Ef, or any proper ORM. If you just use `SaveChanges`, EF will save large aggregates atomically by magic. Maybe that's all you need? Consider whether you really need this pattern before using it.
+
+Requires Docker. Run `docker-compose` to start sql server container needed for tests. Then just press play on the tests as usual.
 
 <br/>
 
