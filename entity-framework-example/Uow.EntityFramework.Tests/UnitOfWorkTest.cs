@@ -7,8 +7,7 @@ using Xunit;
 
 namespace Uow.EntityFramework.Tests;
 
-[Collection("DatabaseTest")]
-public class UnitOfWorkTest
+public class UnitOfWorkTest : IClassFixture<DatabaseFixture>
 {
     private readonly DatabaseFixture _fixture;
     private readonly ICreateUnitOfWork _createUnitOfWork;

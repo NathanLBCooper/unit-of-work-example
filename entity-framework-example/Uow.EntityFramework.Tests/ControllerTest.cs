@@ -6,8 +6,7 @@ using Xunit;
 
 namespace Uow.EntityFramework.Tests;
 
-[Collection("DatabaseTest")]
-public class ControllerTest
+public class ControllerTest : IClassFixture<DatabaseFixture>
 {
     /**
      * This tests "Controller", which uses unit of work
