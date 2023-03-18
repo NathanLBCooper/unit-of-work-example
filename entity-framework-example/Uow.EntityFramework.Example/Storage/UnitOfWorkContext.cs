@@ -1,18 +1,19 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Uow.EntityFramework.Example.Application;
 
 namespace Uow.EntityFramework.Example.Storage;
 
 public class UnitOfWorkContext : ICreateUnitOfWork, IGetDbContext
 {
-    private readonly SqlSettings _sqlSettings;
+    private readonly IDbContextFactory<ExampleDbContext> _dbContextFactory;
     private UnitOfWork? _unitOfWork;
 
     private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
-    public UnitOfWorkContext(SqlSettings sqlSettings)
+    public UnitOfWorkContext(IDbContextFactory<ExampleDbContext> dbContextFactory)
     {
-        _sqlSettings = sqlSettings;
+        _dbContextFactory = dbContextFactory;
     }
 
     public ExampleDbContext GetDbContext()
@@ -34,7 +35,7 @@ public class UnitOfWorkContext : ICreateUnitOfWork, IGetDbContext
                 "Cannot begin a transaction before the unit of work from the last one is disposed");
         }
 
-        _unitOfWork = new UnitOfWork(_sqlSettings);
+        _unitOfWork = new UnitOfWork(_dbContextFactory);
         return _unitOfWork;
     }
 }

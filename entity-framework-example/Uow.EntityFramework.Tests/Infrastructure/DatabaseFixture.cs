@@ -1,4 +1,6 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Uow.EntityFramework.Example.Application;
 using Uow.EntityFramework.Example.Storage;
 
@@ -17,8 +19,11 @@ public class DatabaseFixture : IDisposable
         _testDatabaseContext.InitializeTestDatabase();
         var connectionString = _testDatabaseContext.ConnectionString!;
 
-        var sqlSettings = new SqlSettings(connectionString);
-        var unitOfWorkContext = new UnitOfWorkContext(sqlSettings);
+        var options = new DbContextOptionsBuilder<ExampleDbContext>()
+            .UseSqlServer(connectionString);
+        var dbContextFactory = new PooledDbContextFactory<ExampleDbContext>(options.Options);
+
+        var unitOfWorkContext = new UnitOfWorkContext(dbContextFactory);
 
         CreateUnitOfWork = unitOfWorkContext;
         GetDbContext = unitOfWorkContext;

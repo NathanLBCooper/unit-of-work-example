@@ -13,12 +13,9 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public bool IsDisposed { get; private set; } = false;
 
-    public UnitOfWork(SqlSettings sqlSettings)
+    public UnitOfWork(IDbContextFactory<ExampleDbContext> dbContextFactory)
     {
-        var options = new DbContextOptionsBuilder<ExampleDbContext>()
-            .UseSqlServer(sqlSettings.ConnectionString);
-        DbContext = new ExampleDbContext(options.Options);
-
+        DbContext = dbContextFactory.CreateDbContext();
         _transaction = DbContext.Database.BeginTransaction();
     }
 
