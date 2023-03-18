@@ -12,7 +12,7 @@ using Uow.EntityFramework.Example.Storage;
 namespace Uow.EntityFramework.Example.Migrations
 {
     [DbContext(typeof(ExampleDbContext))]
-    [Migration("20230305213656_CreateEntityTable")]
+    [Migration("20230318093204_CreateEntityTable")]
     partial class CreateEntityTable
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace Uow.EntityFramework.Example.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Uow.EntityFrameworkInMemory.Example.Application.Entity", b =>
+            modelBuilder.Entity("Uow.EntityFramework.Example.Application.Entity", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()

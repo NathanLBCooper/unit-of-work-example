@@ -22,7 +22,7 @@ namespace Uow.EntityFramework.Example.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Uow.EntityFrameworkInMemory.Example.Application.Entity", b =>
+            modelBuilder.Entity("Uow.EntityFramework.Example.Application.Entity", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
