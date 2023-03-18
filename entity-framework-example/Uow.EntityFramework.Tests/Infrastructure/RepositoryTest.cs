@@ -1,14 +1,24 @@
 ﻿using System;
+using Uow.EntityFramework.Example.Application;
 using Xunit;
 
-namespace Uow.Mssql.Tests.Infrastructure;
+namespace Uow.EntityFramework.Tests.Infrastructure;
 
 [Collection("DatabaseTest")]
 public class RepositoryTest : IDisposable
 {
-    // todo
+    protected readonly DatabaseFixture Fixture;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public RepositoryTest(DatabaseFixture fixture)
+    {
+        Fixture = fixture;
+        _unitOfWork = fixture.CreateUnitOfWork.Create();
+    }
+
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _unitOfWork.RollBack();
+        _unitOfWork?.Dispose();
     }
 }
