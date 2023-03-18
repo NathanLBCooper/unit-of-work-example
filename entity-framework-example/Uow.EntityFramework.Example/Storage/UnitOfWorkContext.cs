@@ -3,19 +3,19 @@ using Uow.EntityFramework.Example.Application;
 
 namespace Uow.EntityFramework.Example.Storage;
 
-public class UnitOfWorkContext : ICreateUnitOfWork
+public class UnitOfWorkContext : ICreateUnitOfWork, IGetDbContext
 {
-    private readonly ExampleDbContext _dbContext;
+    private readonly SqlSettings _sqlSettings;
     private UnitOfWork? _unitOfWork;
 
     private bool IsUnitOfWorkOpen => !(_unitOfWork == null || _unitOfWork.IsDisposed);
 
-    public UnitOfWorkContext(ExampleDbContext dbContext)
+    public UnitOfWorkContext(SqlSettings sqlSettings)
     {
-        _dbContext = dbContext;
+        _sqlSettings = sqlSettings;
     }
 
-    public ExampleDbContext GetConnection()
+    public ExampleDbContext GetDbContext()
     {
         if (!IsUnitOfWorkOpen)
         {
@@ -34,7 +34,7 @@ public class UnitOfWorkContext : ICreateUnitOfWork
                 "Cannot begin a transaction before the unit of work from the last one is disposed");
         }
 
-        _unitOfWork = new UnitOfWork(_dbContext);
+        _unitOfWork = new UnitOfWork(_sqlSettings);
         return _unitOfWork;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore;
 using Uow.EntityFramework.Example.Application;
 using Uow.EntityFramework.Example.Storage;
 
@@ -10,7 +9,7 @@ public class DatabaseFixture : IDisposable
     private readonly TestDatabaseContext _testDatabaseContext;
 
     public ICreateUnitOfWork CreateUnitOfWork { get; }
-    public ExampleDbContext DbContext { get; }
+    public IGetDbContext GetDbContext { get; }
 
     public DatabaseFixture()
     {
@@ -18,18 +17,15 @@ public class DatabaseFixture : IDisposable
         _testDatabaseContext.InitializeTestDatabase();
         var connectionString = _testDatabaseContext.ConnectionString!;
 
-        //var sqlSettings = new SqlSettings(connectionString); // todo should UnitOfWorkContext take SqlSettings instead of DbContext?
+        var sqlSettings = new SqlSettings(connectionString);
+        var unitOfWorkContext = new UnitOfWorkContext(sqlSettings);
 
-        var options = new DbContextOptionsBuilder<ExampleDbContext>()
-            .UseSqlServer(connectionString);
-        DbContext = new ExampleDbContext(options.Options);
-
-        CreateUnitOfWork = new UnitOfWorkContext(DbContext);
+        CreateUnitOfWork = unitOfWorkContext;
+        GetDbContext = unitOfWorkContext;
     }
 
     public void Dispose()
     {
-        DbContext.Dispose();
         _testDatabaseContext.Dispose();
     }
 }

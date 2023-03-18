@@ -4,26 +4,30 @@ namespace Uow.EntityFramework.Example.Storage;
 
 public class EntityRepository : IEntityRepository
 {
-    private readonly ExampleDbContext _dbContext;
+    private readonly IGetDbContext _getDbContext;
 
-    public EntityRepository(ExampleDbContext dbContext)
+    public EntityRepository(IGetDbContext getDbContext)
     {
-        _dbContext = dbContext;
+        _getDbContext = getDbContext;
     }
 
     public int Create(int value)
     {
         var entity = new Entity { Value = value };
 
-        _ = _dbContext.Add(entity);
-        _ = _dbContext.SaveChanges();
+        var context = _getDbContext.GetDbContext();
+
+        _ = context.Add(entity);
+        _ = context.SaveChanges();
 
         return entity.Id!.Value;
     }
 
     public Entity? GetOrDefault(int id)
     {
-        if (_dbContext.Entities.Find(id) is Entity entity)
+        var context = _getDbContext.GetDbContext();
+
+        if (context.Entities.Find(id) is Entity entity)
         {
             return entity;
         }

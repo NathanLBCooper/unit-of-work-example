@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Uow.EntityFramework.Example.Application;
 
@@ -6,21 +7,24 @@ namespace Uow.EntityFramework.Example.Storage;
 
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
-    public ExampleDbContext DbContext { get; }
     private readonly IDbContextTransaction _transaction;
+
+    public ExampleDbContext DbContext { get; }
 
     public bool IsDisposed { get; private set; } = false;
 
-    public UnitOfWork(ExampleDbContext dbContext)
+    public UnitOfWork(SqlSettings sqlSettings)
     {
-        DbContext = dbContext;
-        _transaction = DbContext.Database.BeginTransaction(); // todo is this right? Maybe the DbContext lifetime should be the same as the UOW?
+        var options = new DbContextOptionsBuilder<ExampleDbContext>()
+            .UseSqlServer(sqlSettings.ConnectionString);
+        DbContext = new ExampleDbContext(options.Options);
+
+        _transaction = DbContext.Database.BeginTransaction();
     }
 
     public void RollBack()
     {
         _transaction.Rollback();
-        DbContext.ChangeTracker.Clear();
     }
 
     public void Commit()
@@ -31,7 +35,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     public void Dispose()
     {
         _transaction?.Dispose();
-        DbContext.ChangeTracker.Clear();
+        DbContext?.Dispose();
 
         IsDisposed = true;
     }

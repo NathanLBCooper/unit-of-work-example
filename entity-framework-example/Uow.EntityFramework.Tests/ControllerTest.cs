@@ -19,7 +19,7 @@ public class ControllerTest : IDisposable
 
     public ControllerTest()
     {
-        var repository = new EntityRepository(_fixture.DbContext);
+        var repository = new EntityRepository(_fixture.GetDbContext);
         _sut = new Controller(repository, _fixture.CreateUnitOfWork);
     }
 
