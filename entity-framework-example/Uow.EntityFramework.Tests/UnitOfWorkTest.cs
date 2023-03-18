@@ -7,14 +7,16 @@ using Xunit;
 
 namespace Uow.EntityFramework.Tests;
 
-public class UnitOfWorkTest : IDisposable
+[Collection("DatabaseTest")]
+public class UnitOfWorkTest
 {
-    private readonly DatabaseFixture _fixture = new();
+    private readonly DatabaseFixture _fixture;
     private readonly ICreateUnitOfWork _createUnitOfWork;
     private readonly EntityRepository _repository;
 
-    public UnitOfWorkTest()
+    public UnitOfWorkTest(DatabaseFixture fixture)
     {
+        _fixture = fixture;
         _createUnitOfWork = _fixture.CreateUnitOfWork;
         _repository = new EntityRepository(_fixture.GetDbContext);
     }
@@ -34,10 +36,5 @@ public class UnitOfWorkTest : IDisposable
          * The rolled back changes are still in the DbContext, but that's fine, because it's unusable now
          * If DbContext lives longer than the UOW, try doing DbContext.ChangeTracker.Clear() on rollback
          */
-    }
-
-    public void Dispose()
-    {
-        _fixture?.Dispose();
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using Shouldly;
 using Uow.EntityFramework.Example.Application;
 using Uow.EntityFramework.Example.Storage;
@@ -7,18 +6,20 @@ using Xunit;
 
 namespace Uow.EntityFramework.Tests;
 
-public class ControllerTest : IDisposable
+[Collection("DatabaseTest")]
+public class ControllerTest
 {
     /**
      * This tests "Controller", which uses unit of work
      *  This, therefore, also test the Commit(), Rollback(), etc behaviour of unit of work
      */
 
-    private readonly DatabaseFixture _fixture = new();
+    private readonly DatabaseFixture _fixture;
     private readonly Controller _sut;
 
-    public ControllerTest()
+    public ControllerTest(DatabaseFixture fixture)
     {
+        _fixture = fixture;
         var repository = new EntityRepository(_fixture.GetDbContext);
         _sut = new Controller(repository, _fixture.CreateUnitOfWork);
     }
@@ -55,10 +56,5 @@ public class ControllerTest : IDisposable
         var createdEntity = _sut.GetOrDefault(createdId);
 
         createdEntity.ShouldBeNull();
-    }
-
-    public void Dispose()
-    {
-        _fixture?.Dispose();
     }
 }
